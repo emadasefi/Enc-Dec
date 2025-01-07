@@ -36,9 +36,9 @@ This page provides a user-friendly interface for encrypting and decrypting files
 
 
 ## 🖼️ ScreenShots :
-<img src="https://github.com/emadasefi/Enc-Dec-Free-Encryptor-Decryptor-Tool-/blob/main/Enc-Dec-01.jpg" alt="Enc-Dec-Free-Encryptor-Decryptor-Tool" style="width: 70%;"> 
-<img src="https://github.com/emadasefi/Enc-Dec-Free-Encryptor-Decryptor-Tool-/blob/main/Enc-Dec-02.jpg" alt="Enc-Dec-Free-Encryptor-Decryptor-Tool" style="width: 70%;"> 
-<img src="https://github.com/emadasefi/Enc-Dec-Free-Encryptor-Decryptor-Tool-/blob/main/Enc-Dec-03.jpg" alt="Enc-Dec-Free-Encryptor-Decryptor-Tool" style="width: 70%;"> 
+<img src="https://github.com/emadasefi/Enc-Dec-Free-Encryptor-Decryptor-Tool-/blob/main/Enc-Dec-01.jpg" alt="Enc-Dec-Free-Encryptor-Decryptor-Tool"> 
+<img src="https://github.com/emadasefi/Enc-Dec-Free-Encryptor-Decryptor-Tool-/blob/main/Enc-Dec-02.jpg" alt="Enc-Dec-Free-Encryptor-Decryptor-Tool"> 
+<img src="https://github.com/emadasefi/Enc-Dec-Free-Encryptor-Decryptor-Tool-/blob/main/Enc-Dec-03.jpg" alt="Enc-Dec-Free-Encryptor-Decryptor-Tool"> 
 <br><br>
 
 
@@ -73,9 +73,9 @@ This page provides a user-friendly interface for encrypting and decrypting files
 <br><br>
 
 ▚  This tool is designed with security in mind and aims to provide users with a straightforward way to manage their sensitive data effectively. The script was meticulously crafted by Emad Asefi to ensure ease of use while maintaining robust security standards.
-<br><br>
+<br>
 
 
 ## — Feedback ❤️—
-Thank you for choosing the Enc-Dec tool! I hope it meets your encryption needs effectively.
+Thank you for choosing the Enc-Dec tool! I hope it meets your encryption needs effectively.<br>
 Please leave a comment if you have any comments, suggestions or problems.
