@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="author" content="Emad Asefi \ emad.asefi@gmail.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enc-Dec | Free Encryptor/Decryptor Tool</title>
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <header><h1>Enc-Dec | Free Encryptor/Decryptor Tool</h1></header>
+
+<div class="container">
+    <div class="tab-content">
+
+
+		<!-- Tab 1 -->
+        <div id="tabOne" class="tab active">
+            <select id="modeSelect" onchange="toggleMode()">
+                <option value="encrypt">Encrypt</option>
+                <option value="decrypt">Decrypt</option>
+            </select>
+
+            <div class="file-input">
+                <input type="file" id="fileInput" />
+                <label for="fileInput">Select File</label>
+                <span class="file-name">No file chosen</span>
+            </div>
+
+            <div class="password-container">
+                <input type="password" id="password" autocomplete="off" placeholder="Enter password" />
+                <svg class="toggle-password" id="togglePassword" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
+                    <path stroke="#444" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 12s4-8 11-8 11 8 11 8M1 12s4 8 11 8 11-8 11-8"/>
+                    <circle cx="12" cy="12" r="3" stroke="#444" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                </svg>
+            </div>
+
+            <button id="actionButton">Encrypt File</button>
+            <a id="downloadLink" href="#" download></a>
+
+            <div id="errorMessage" style="color: red;"></div>
+        </div>
+
+
+
+
+
+		<!-- Tab 2 -->
+		<div id="tabTwo" class="tab">
+		<form id="myForm">
+			<select id="actionSelect" onchange="toggleFields()">
+				<option value="encrypt">Encrypt</option>
+				<option value="decrypt">Decrypt</option>
+			</select>
+			<br>
+			<textarea type="text" id="inputText" autocomplete="off" placeholder="Enter Plain text or Paste the encrypted text"></textarea>
+			<input type="text" id="inputPassword" autocomplete="off" placeholder="Type Passphrase (Optional)" />
+			<br>
+			<button type="button" id="enc" onclick="AesEncrypt()" style="display:inline;">🔒 Encrypt 🔒</button>
+			<button type="button" id="dec" onclick="AesDecrypt()" style="display:none;">🔓 Decrypt 🔓</button>
+		</form>
+		
+		<p id="Derror"></p>
+		<textarea readonly id="demo1" name="output" autocomplete="off" style="display:inline;" placeholder="Encrypted Result"></textarea> 
+		
+		<p id="Eerror"></p>
+		<textarea readonly id="demo2" name="output" autocomplete="off" style="display:none;" placeholder="Decrypted Result"></textarea> 
+		
+		</div>
+
+
+
+
+
+		<!-- Tab 3 -->
+        <div id="tabThree" class="tab">
+
+			<div class="text-area"> <input type="text" id="strongPasswordValue" value="PASSWORD" disabled />
+			<!-- Original Icon -->
+			<svg  id="CopySuccess"  class="icon"  onclick="toggleIcon()"  width="20px"  height="20px"  viewBox="0 0 24 24"  fill="none"  xmlns="http://www.w3.org/2000/svg"> <rect width="24" height="24" fill="none"/> <rect x="4" y="8" width="12" height="12" rx="1" stroke="white" stroke-linecap="round" stroke-linejoin="round"/> <path d="M8 6V5C8 4.44772 8.44772 4 9 4H19C19.5523 4 20 4.44772 20 5V15C20 15.5523 19.5523 16 19 16H18" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 2"/>
+			</svg>
+		
+			<!-- Check Icon -->
+			<svg  id="CheckIcon"  class="icon"  onclick="toggleIcon()"  style="display: none;"  width="20px"  height="20px"  viewBox="0 0 24 24"  fill="none"  xmlns="http://www.w3.org/2000/svg"> <path d="M5 12l5 5L20 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+
+			</div>
+			<div class="password-length">
+				<input
+				type="range"
+				id="rangeInput"
+				min="16"
+				max="64"
+				value="16"
+				oninput="rangeValue.value = this.value"
+				/>
+				<input
+				type="number"
+				id="rangeValue"
+				min="16"
+				max="64"
+				value="16"
+				oninput="rangeInput.value = this.value"
+				/>
+			</div>
+			<div class="checkBox-list">
+				<label class="options" for="Uppercase"
+				><input id="Uppercase" type="checkbox" value="Uppercase" checked />
+				Include Uppercase Letters (A-Z)</label
+				>
+				<label class="options" for="Lowercase"
+				><input id="Lowercase" type="checkbox" value="Lowercase" /> Include
+				Lowercase Letters (a-z)</label
+				>
+				<label class="options" for="Numbers"
+				><input id="Numbers" type="checkbox" value="Numbers" /> Include
+				Numbers (0-9)</label
+				>
+				<label class="options" for="Symbols"
+				><input id="Symbols" type="checkbox" value="Symbols" /> Include
+				Symbols (@-$)</label
+				>
+				<label class="options" for="Duplicate"
+				><input id="Duplicate" type="checkbox" value="Duplicate" /> Exclude
+				Duplicate Characters</label
+				>
+			</div>
+			<button class="generatePassword">Generate Password</button>
+
+        </div>
+
+
+		<!-- Tab Info -->
+		<div id="tabInfo" class="tab">
+			<div class="tabInfoStyle">
+				<br>
+				<h3 style="text-align:center">Enc-Dec | Free Encryptor/Decryptor Tool</h3>
+				<p style="text-align:center">The Enc-Dec tool is a powerful web-based application designed to provide users with an easy and secure way to encrypt and decrypt files and text. Utilizing the robust AES (Advanced Encryption Standard) encryption algorithm through the CryptoJS library, this tool ensures that sensitive information remains protected from unauthorized access.</p>
+				
+				<br>
+				<h3>Key Features</h3>
+				<ul>
+				<li><strong>File Encryption/Decryption:</strong> Securely encrypt or decrypt files with a simple upload and password entry process.</li>
+				<li><strong>Text Encryption/Decryption:</strong> Easily encrypt plain text or decrypt previously encrypted text using a user-defined passphrase.</li>
+				<li><strong>Password Generation:</strong> Create strong, customizable passwords based on user-defined criteria, enhancing security for encrypted files and texts.</li>
+				<li><strong>Multi-Language Support:</strong> The tool supports English and Persian, making it accessible to a wider audience.</li>
+				<li><strong>User-Friendly Interface:</strong> The intuitive design allows for seamless navigation between different functionalities, making it suitable for users of all technical backgrounds.</li>
+				</ul>
+				
+				<br>
+				<h3>Technical Details</h3>
+				<ul>
+				<li><strong>Encryption Method:</strong> The tool employs AES encryption, which is widely recognized for its strength and efficiency in securing data.</li>
+				<li><strong>Library Used:</strong> The application leverages the CryptoJS library to perform encryption and decryption operations, ensuring high performance and reliability.</li>
+				<li><strong>Responsive Design:</strong> The interface is optimized for both desktop and mobile devices, allowing users to access the tool from anywhere.</li>
+				</ul>
+				
+				
+				<br>
+				<h3>Security Considerations</h3>
+				<p>While the Enc-Dec tool provides strong encryption capabilities, users are encouraged to:</p>
+				<ul>
+				<li>Use strong, unique passwords that combine letters, numbers, and symbols.</li>
+				<li>Keep their passwords confidential and avoid sharing them with others.</li>
+				<li>Regularly update passwords as part of good security hygiene.</li>
+				</ul>
+
+				
+				<br>
+				<h4>This script were designed and written by Emad Asefi, who is dedicated to providing effective tools for data security. For feedback or inquiries, please reach out via email at emad.asefi@gmail.com or visit GitHub.</h4>
+				<h4>Thank you for choosing the Enc-Dec tool! I hope it meets your encryption needs effectively.</h4>
+				
+				<div class="social-icons">
+		<a href="mailto:emad.asefi@gmail.com" target="_blank" rel="noopener" title="Email">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+			<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+			<polyline points="22,6 12,13 2,6"></polyline>
+		</svg></a>
+		
+		
+		&nbsp;&nbsp;
+		<a href="https://au.linkedin.com/in/emadasefi" target="_blank" rel="noopener" title="Linkedin">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+			<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+			<rect x="2" y="9" width="4" height="12"></rect>
+			<circle cx="4" cy="4" r="2"></circle>
+		</svg></a>
+		
+		&nbsp;&nbsp;
+		<a href="https://github.com/emadasefi" target="_blank" rel="noopener" title="Github">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+			<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+		</svg> </a>
+				</div>
+			</div>
+		</div>
+
+    </div>
+
+    <div class="tabs">
+        <button class="tab-button" onclick="showTab('tabOne')">File</button>
+        <button class="tab-button" onclick="showTab('tabTwo')">Text/String</button>
+        <button class="tab-button" onclick="showTab('tabThree')">Generator</button>
+        <button class="tab-button" onclick="showTab('tabInfo')">Help</button>
+        <button onclick="resetFields()" class="reset" title="Reset All Fields">Reset Fields</button>
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            Copyright &copy; 2025 Emad Asefi / Enc-Dec | Free Encryptor/Decryptor Tool. All rights reserved. |
+            <a style="color: inherit;" href="mailto:emad.asefi@gmail.com" target="_blank" rel="noopener"
+                title="Email">Email</a> |
+            <a style="color: inherit;" href="https://github.com/emadasefi" target="_blank" rel="noopener"
+                title="Github">GitHub</a>
+        </p>
+    </footer>
+
+
+    <script src="js/script.js"></script>
+    <script src="js/crypto-js.js"></script>
+    <script src="js/e_d_withFile.js"></script>
+    <script src="js/e_d_string.js"></script>
+    <script src="js/PasswordGenerateToggle.js"></script>
+    <script src="js/resetFields.js"></script>
+</body>
+</html>
